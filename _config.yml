@@ -132,7 +132,7 @@ comments:
     repository  : 'https://github.com/yenilee/yenilee.github.io' # GitHub repo
     owner       : 'yenilee' # GitHub repo owner
     admin: ['yenile'] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      - 'yenilee' # - your GitHub Id
+       # - your GitHub Id
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
