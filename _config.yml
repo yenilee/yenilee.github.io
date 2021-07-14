@@ -129,9 +129,9 @@ comments:
   gitalk:
     clientID    : '9aad9d431285486f16e9' # GitHub Application Client ID
     clientSecret: '4b6d674db1998c69cddd6eb29cae864b62195532' # GitHub Application Client Secret
-    repository  : 'yenilee.github.io' # GitHub repo
+    repository  : 'https://github.com/yenilee/yenilee.github.io' # GitHub repo
     owner       : 'yenilee' # GitHub repo owner
-    admin: ['yenilee'] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+    admin: ['yenile'] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
       - 'yenilee' # - your GitHub Id
 
   ## Valine
