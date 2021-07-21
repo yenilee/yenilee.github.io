@@ -57,8 +57,5 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "dependencies": {
-    "gitalk": "^1.7.2"
   }
 }
