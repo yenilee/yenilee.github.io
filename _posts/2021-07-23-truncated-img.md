@@ -10,8 +10,19 @@ PIL에서 이미지를 다룰 때 발생하는 image file is truncated 에러에
 
 # 문제
 
-PIL 라이브러리를 통해 이미지를 load, save할 때 발생한 에러다. 소스 코드를 들어가보면 다음과 같은 상황에서 에러가 나는 것을 알 수 있다.
-png/gif 또는 jpeg/jpg 파일을 읽으면서 read하다가 에러가 났을 때, LOAD_TRUNCATED_IMAGES의 True, False 여부에 따라 에러를 raise하도록 되어있다.
+PIL 라이브러리를 통해 이미지를 load하거나 save할 때 에러가 났다. 아래 코드는 convert지만, convert method도 들어가보면 제일 첫 줄에서 `self.load()`를 하고 있었다.
+
+```python
+from PIL import Image
+
+image = Image.open(buffer)
+image = image.convert('RGB')
+
+# 에러 발생!!! OSError: image file is truncated (n bytes not processed).
+```
+
+PIL 소스 코드를 들어가보면 다음과 같은 상황에서 에러를 내는 것을 알 수 있다.
+png/gif 또는 jpeg/jpg 파일을 읽다가 에러가 났을 때, LOAD_TRUNCATED_IMAGES의 True, False 여부에 따라 에러를 raise하도록 되어있다.
 
 ```python
 # ImageFile.load 함수의 일부
@@ -84,8 +95,8 @@ except OSError as e:
 
 ## 3. 이미지 파일의 구조를 이용하기
 
-결론적으로 쓰게된 방법은 이미지 파일의 구조를 이용해 truncated 여부를 찾는 것이었다. 이미지 프로세싱을 멀티 스레드 환경에서 진행하는 상황이었는데, 위 LOAD_TRUNCATED_IMAGES는 글로벌 변수이기 때문에
-여러 스레드에서 해당 변수를 계속 True -> False로 바꿔줄 경우 thread-safe하지 않은 상황이었기 때문이다.
+결론적으로 쓰게된 방법은 이미지 파일의 구조를 이용해 truncated 여부를 찾는 것이었다. multi-thread 환경에서 이미지 프로세싱을 하다보니, 위 LOAD_TRUNCATED_IMAGES는 글로벌 변수이기 때문에
+여러 스레드에서 해당 변수를 계속 True -> False로 바꿔줄 경우 thread-safe하지 않았기 때문이다.
 
 JPG, JPEG, PNG 파일의 경우 파일의 구조가 정해져있고, 이미지 파일의 끝과 시작을 나타내는 바이트 값이 고정되어 있다.
 이 고정된 값의 이름을 JPEG, JPG는 EOI (End Of Image), PNG는 IEND라고 한다.
@@ -94,8 +105,8 @@ JPG, JPEG, PNG 파일의 경우 파일의 구조가 정해져있고, 이미지 �
 사실 이 부분은 stack overflow에 질문해서 알게된 것이라서, 답변자의 글을 가져왔다.
 답변자는 이미지를 만들어 정상 이미지의 바이트를 확인할 수 있는 코드를 알려주었다.
 
-- If they are JPEG, they must end with EOI, namely the two bytes 0xff 0xd9
-- If they are PNG, they must end with an IEND marker 49 45 4e 44 ae 42 60 82
+- 만약 이미지가 JPG(JPEG)면, EOI(0xff 0xd9)로 끝나야 한다.
+- 만약 이미지가 PNG면, IEND(49 45 4e 44 ae 42 60 82)로 끝나야 한다.
 
 ```python
 
@@ -113,6 +124,8 @@ im.save(bytes, format="JPEG")
 
 buff = bytes.getbuffer()
 print(buff[-2:].hex())
+
+# ffd9
 ```
 
 ```python
@@ -127,19 +140,22 @@ bytes = BytesIO()
 
 # if png, Check last 8 bytes
 im.save(bytes, format="PNG")
+
 buff = bytes.getbuffer()
 print(buff[-8:].hex())
+
+#49454e44ae426082
 ```
 
-내 코드는 기존에 있는 이미지 buffer를 검사하는 것이기 때문에 im.save를 사용하진 않는다. (truncated image는 save시에도 에러가 발생함)
+실제로 코드는 이미지를 만드는 것이 아니라 기존에 있는 이미지 buffer를 가져와 검사하는 것이기 때문에 im.save를 사용하진 않는다. (truncated image는 save시에도 에러가 발생함)
 
 ## 4. verify
 
 직접 사용해보진 않았지만, truncated image를 검색하면 결과에 가장 많이 나오는 결과 중 하나여서 해결에 넣었지만 사실 해결 방법은 아니다.
-간단하게 검색했을 때는 PIL에 Image.verify()라는 함수가 있어서 사용해보려고 했다.
+PIL에 Image.verify()라는 함수가 있고 이름도 굉장히 내가 찾는 방법과 가까워서 써보려고 했는데 아무 결과도 나타나지 않았다.
 
-그런데 해당 함수는 PNG 파일에만 실행할 수 있고, 이미지의 CRC checksum 만 확인한다고 한다.
-truncated 여부를 확인해주는 함수는 아니었다. CRC checksum을 검색해 보면 아래와 같이 나와있다. 데이터 전송 시 오류를 확인하는 것이지, 잘린 이미지를 체크하는 함수가 아니다.
+일단 이 함수는 PNG 파일에만 실행할 수 있고, 이미지의 CRC checksum 만 확인한다고 한다.
+CRC checksum을 검색해 보면 아래와 같이 나와있다. 데이터 전송 시 오류를 확인하는 것이지, 잘린 이미지를 체크하는 함수가 아니다.
 
 > 순환 중복 검사, CRC는 네트워크 등을 통하여 데이터를 전송할 때 전송된 데이터에 오류가 있는지를 확인하기 위한 체크값을 결정하는 방식을 말한다.
 
@@ -148,4 +164,3 @@ truncated 여부를 확인해주는 함수는 아니었다. CRC checksum을 검�
 별거 아닌 것 같던 문제도 파고 파다보니... 이렇게 길어졌다.
 이 부분 디버깅을 저번부터 했었는데 기록해놓지 않으면 또 잊어버리고 공부하는 시간이 들까봐 정리할 내용들이 많아서 블로그 글에 남겨보았다.
 사실 아직 truncated 이미지를 만들어서 테스트코드를 적어야하는 과정까지 남아있는데 얼른 끝내고 싶다 🥲
-며칠간 truncated라는 단어를 내 이름보다 많이 본 것 같을 지경이다.
