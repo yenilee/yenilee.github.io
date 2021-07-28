@@ -1,6 +1,6 @@
 ---
 title: pytest & mock의 기본 개념 (테스트란?🤔)
-tags: python TIL
+tags: python
 ---
 
 <br/>
