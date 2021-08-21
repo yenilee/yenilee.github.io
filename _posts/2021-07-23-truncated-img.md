@@ -1,6 +1,6 @@
 ---
 title: OSError image file is truncated 에러 해결 방법
-tags: python PIL
+tags: python PIL image-processing
 ---
 
 <br/>
