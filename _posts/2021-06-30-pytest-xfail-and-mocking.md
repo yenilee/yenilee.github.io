@@ -78,8 +78,8 @@ fixture를 사용해서 정상 테스트를 하는 것은 많이 다뤄봤는데
 
 skip이나 xfail은 `성공할 수 없는 테스트를 다루는 방식`으로, 특정 플랫폼에서 실행될 수 없거나 실패를 기대하는 테스트 함수에 표시해를 해서 테스트 요약에 나타낸다.
 
-- skip: 특정 조건에 맞아야 성공하고, 그렇지 않으면 테스트도 스킵하는 것이다. 일반적인 예는 윈도우가 아닌 플랫폼에서 윈도우 only test를 skip하는 것이다.
-- xfail: 특정 이유로 테스트가 실패하는 것을 기대하는 것을 의미한다. 기능을 위한 테스트가 아직 실행되지 않았거나, 버그가 수정되지 않은 것 등이다.  실패를 기대했는데도 만약 패스한다면, test summary에 xpass로 리포팅되게 된다.
+- skip: 특정 조건에 맞아야 성공하고, 그렇지 않으면 테스트도 스킵하는 것이다. 일반적인 예는 윈도우가 아닌 플랫폼에서 윈도우 only test를 skip하거나, 테스트하는 순간 가용이 불가한 외부 자원에 따라 skip하는 경우다.
+- xfail: 특정 이유로 테스트가 실패하는 것을 기대하는 것을 의미한다. 아직 구현되지 않은 기능을 테스트하거나, 수정되지 않은 버그로 인해 실패 결과를 기대하는 것 등이다. 실패를 기대했는데 만약 패스한다면, test summary에 xpass로 리포팅되게 된다.
 
 ### pytest.mark.skip
 조건 없이 테스트를 skip하도록 해준다.
@@ -100,42 +100,17 @@ test가 fail할 것이라고 가리키는 것이고, 실패하더라도 tracebac
 >Instead, terminal reporting will list it in the “expected to fail” (XFAIL) or “unexpectedly passing” (XPASS) sections.
 >Alternatively, you can also mark a test as XFAIL from within the test or its setup function imperatively
 
-#### raises
+### pytest.raises
 
-해당 테스트가 실패한 이유에 대해 더 자세히 명시하고 싶을 경우, raises 인자에 exception class를 넣는다. (아래 코드에 예시)
-exception은 Exception의 subclass여야 한다. 만약 raises에서 언급한 exception이 아닌 에러가 리포팅될 경우 일반 실패 케이스로 처리된다.
-
-#### 주의할 점
-
-내가 이 블로그를 쓰게된 계기인데, `@pytest.mark.xfail` 데코레이터는 만약 내가 기대하는 에러가 발생하지 않더라도 테스트에 초록불이 들어온다.
-RunTimeError가 발생할 것으로 기대하는 상황인데 에러가 발생하지 않더라도 문제 없이 통과된다는 의미다.
+예상되는 예외가 발생하는지를 체크하는 기능이다. pytest.raises는 고의적으로 코드에서 낸 예외 케이스에 대해서 테스트를 할 때 사용하는 방법이다.
+반면 xfail은 디펜던시에 의한 버그나, 고쳐지지 않은 버그에 대한 문서화의 목적으로 사용하는 것으로 보는 것이 좋다.
 
 ```python
 import pytest
-
-@pytest.mark.xfail(raises=RuntimeError)
-def test_function():
-    pass
+with pytest.raises(ZeroDivisionError):
+    1/0
 ```
 
-정상적으로 에러가 발생하는 케이스라면 테스트를 실행했을 때 해당 테스트에 traceback이 찍혀있어야 하는데, 아무 로그도 없는 것을 보고 당황했다.
-동작 방식을 잘 모른다면 pass를 했기 때문에 내가 원하는 대로 테스트되었다고 착각할 수 있을 것 같다는 생각이 들었고, 다음 방식으로 사용하는게 더 좋을 것 같다.
-
-#### 개선점
-
-- 에러 검증을 위해 테스트 함수 내옹을`pass` 보다는 `assert False`를 통해 테스트 통과 여부를 명시적으로 알 수 있도록 해야 한다.
-- pytest.mark.xfail은 fail할 것이라고 Mark만 하는 것이기 때문에, 에러가 나지 않아도 통과된다는 점을 인지해야 한다.
-
-```python
-import pytest
-
-@pytest.mark.xfail(raises=RuntimeError)
-def test_function():
-    assert False
-
-    # 검증하려는 로직에서 중간에 에러가 발생하면 assert하는 곳까지 오지 않기 떄문에,
-    # False 로 테스트가 실패하게 되면 해당 테스트 함수의 정상 행동인 에러가 발생되지 않았음을 뜻한다.
-```
 
 # mock
 
