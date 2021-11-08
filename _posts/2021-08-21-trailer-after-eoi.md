@@ -1,5 +1,5 @@
 ---
-title: Trailer group - JPEG의 EOI 마커 뒤에 데이터가?
+title: Trailer group - JPEG의 EOI 마커 뒤에 붙는 데이터
 tags: image-processing
 ---
 
