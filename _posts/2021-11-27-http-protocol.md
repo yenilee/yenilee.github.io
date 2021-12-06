@@ -34,13 +34,9 @@ HTTP 프로토콜 기본, TCP/IP 4계층 정리 <br/>
 ## - TCP/IP 4 계층
 
 TCP/IP 계층(Layer)은 4계층으로 나뉘어져 있다. 사양이 변경될 경우 해당 계층만 바꾸면 된다. 연결되어 있는 부분 외의 각 계층은 자유롭게 설계 가능하다는 장점이 있다.
-
-- 그림 설명
-    - 송신 시 각 계층을 거칠 때 해당 계층에 필요한 정보를 추가한다.
-    - 이렇게 정보를 감싸는 것을 캡슐화라고 한다.
-
-    ![IMG_67E85B882813-1.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e8ba6466-36aa-43cd-9664-3fbf8b48fa29/IMG_67E85B882813-1.jpeg)
-
+- 송신 시 각 계층을 거칠 때 해당 계층에 필요한 정보를 추가한다.
+- 이렇게 정보를 감싸는 것을 캡슐화라고 한다.
+---
 - 애플리케이션 계층: FTP, DNS, HTTP
     - 유저에게 제공되는 애플리케이션에서 사용하는 통신 방법
     - 어느 웹페이지를 보고 싶다는 HTTP request 지시
@@ -56,14 +52,14 @@ TCP/IP 계층(Layer)은 4계층으로 나뉘어져 있다. 사양이 변경될 �
 
 # 3. HTTP와 관계가 깊은 IP/TCP/DNS
 
-- 요약
-    - 클라이언트의 요청
-    - DNS 서버에 IP 주소 확인
-    - HTTP : 웹 서버에 보낼 HTTP 메시지 작성
-    - TCP : HTTP 메시지를 패킷으로 분해해 일련 번호 부여해 전송
-    - IP : 상대가 어디 있는지 찾아 중계해 가면서 배송
-    - TCP : 전달받은 패킷을 일련번호를 보고 조립
-    - HTTP: 웹서버에 대한 리퀘스트 내용을 처리
+- 네트워크 흐름 요약
+
+1. 클라이언트의 요청 DNS 서버에 IP 주소 확인
+2. HTTP : 웹 서버에 보낼 HTTP 메시지 작성
+3. TCP : HTTP 메시지를 패킷으로 분해해 일련 번호 부여해 전송
+4. IP : 상대가 어디 있는지 찾아 중계해 가면서 배송
+5. TCP : 전달받은 패킷을 일련번호를 보고 조립
+6. HTTP: 웹서버에 대한 리퀘스트 내용을 처리
 
 ## 배송을 담당하는 IP(Internet Protocol)
 
@@ -109,9 +105,6 @@ URI는 리소스를 식별하기 위한 문자열 전반이지만, URL은 리소
         - URI 스키마: http, ftp, mailto, telnet, file 등
 - URL: Uniform Resource Locator
 - URL 포맷
-
-    ![IMG_36F45965F0B1-1.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e97bc7f7-42fd-41fd-a6c4-9c74b3ddced6/IMG_36F45965F0B1-1.jpeg)
-
     - 서버 주소: DNS나 IP 주소
     - 서버 포트: 서버의 접속 대상이 되는 네트워크 포트 번호
     - 계층적 파일 패스: 특정 리소스를 식별하기 위해 서버 상의 파일 패스 지정
