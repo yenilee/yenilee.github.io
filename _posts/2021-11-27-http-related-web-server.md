@@ -1,6 +1,6 @@
 ---
-title: 프로그래머스 가장 큰 수 (feat.sorted)
-tags: python algorithm
+title: 프록시, 게이트웨이, 터널은 무엇일까?
+tags: network
 ---
 
 <br/>
