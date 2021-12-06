@@ -1,5 +1,5 @@
 ---
-title: pytest mocking
+title: pytest 로직 일부분을 mocking하기
 tags: python
 ---
 
