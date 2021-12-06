@@ -4,7 +4,7 @@ tags: image-processing
 ---
 
 <br/>
-truncated image를 찾는 과정에서 알게된 Trailer group - 이미지 형식의 세계 🔎 <br/>
+truncated image를 찾는 과정에서 알게된 Trailer group- 이미지 형식의 세계 🔎 <br/>
 <!--more-->
 
 
