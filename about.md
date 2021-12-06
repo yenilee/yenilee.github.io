@@ -24,6 +24,7 @@ titles:
   fr-LU   : *FR
   # @end locale config
 key: page-about
+comment: false
 ---
 We are what we repeatedly do.
 Excellence, then, is not an act, but a habit.
