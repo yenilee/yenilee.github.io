@@ -1,5 +1,5 @@
 ---
-title: gitalk 적용되지 않는 문제 (feat. 깃헙 블로그 댓글)
+title: gitalk 댓글창 403 오류 해결 방법
 tags: jekyll gitalk
 ---
 

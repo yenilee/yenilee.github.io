@@ -1,10 +1,10 @@
 ---
-title: Trailer group - JPEG의 EOI 마커 뒤에 붙는 데이터
+title: JPEG의 EOI 마커가 끝이 아닐 수 있다(!)
 tags: image-processing
 ---
 
 <br/>
-truncated image를 찾는 과정에서 알게된 이미지 형식의 세계 🔎 <br/>
+truncated image를 찾는 과정에서 알게된 Trailer group - 이미지 형식의 세계 🔎 <br/>
 <!--more-->
 
 
