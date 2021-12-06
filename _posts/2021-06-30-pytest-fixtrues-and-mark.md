@@ -1,5 +1,5 @@
 ---
-title: pytest 성공, 실패 케이스 작성 방법
+title: pytest 테스트 코드, 성공/실패 케이스 작성
 tags: python
 ---
 
