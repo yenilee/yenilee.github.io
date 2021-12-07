@@ -1,5 +1,5 @@
 ---
-title: HTTP network 프록시, 게이트웨이, 터널 & 사용 예시
+title: HTTP network 프록시, 게이트웨이, 터널 + 캐시
 tags: network
 ---
 
