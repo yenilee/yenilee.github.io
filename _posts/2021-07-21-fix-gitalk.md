@@ -1,6 +1,6 @@
 ---
 title: gitalk 댓글창 403 오류 해결 방법
-tags: jekyll gitalk
+tags: jekyll gitalk bug
 ---
 
 <br/>

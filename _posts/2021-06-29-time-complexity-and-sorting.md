@@ -1,5 +1,5 @@
 ---
-title: 시간 복잡도와 정렬 알고리즘
+title: 시간 복잡도와 정렬
 tags: algorithm
 ---
 
