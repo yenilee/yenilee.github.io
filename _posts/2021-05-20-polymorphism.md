@@ -73,7 +73,6 @@ class RectMain {
 ## 객체 다형성
 
 - 상속 받은 클래스의 객체는 Super class와 하위 클래스(this)로 모두 취급 가능
-
 - sub class의 객체는 super class의 객체로 생성 가능하다
 - super class로 선언하면 하위 모든 클래스의 객체를 사용할 수 있다. (파라미터를 super class로 넣을 경우 모든 sub class를 인자로 넣을 수 있음)
 

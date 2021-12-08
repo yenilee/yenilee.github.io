@@ -1,5 +1,5 @@
 ---
-title: 객체지향 | 다형성
+title: 객체지향 | 수식자 final, static
 tags: java 객체지향
 ---
 
@@ -21,14 +21,12 @@ tags: java 객체지향
 ## static
 
 1. field, method 앞에 붙여서 사용한다
-
-2. field: static이 붙으면 클래스를 상속한 모든 객체들이 공유하는 값이 된다.
-
+2. field
+ - static이 붙으면 클래스를 상속한 모든 객체들이 공유하는 값이 된다.
    동일한 메모리를 가리키고 있기 때문인데, 메모리 효율보다는 공유를 목적으로 많이 사용된다.
-
-3. method: 객체를 생성할 필요가 없이 바로 class.method로 접근 가능하다.
-
-   static method 안에서는 static 변수만 사용할 수 있다.
+3. method
+ - 객체를 생성할 필요가 없이 바로 class.method로 접근 가능하다.
+ - static method 안에서는 static 변수만 사용할 수 있다.
 
 ```java
 public class HousePark  {
