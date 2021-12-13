@@ -10,8 +10,7 @@ tags: python
 <!--more-->
 
 # 테스트란?
-[pytest 공식 문서](https://docs.pytest.org/en/6.2.x/fixture.html#fixture)는
-테스트를 `특정 행동에 대한 결과`를 보고, `결과가 내가 기대한 것과 동일한지`를 확인하는 것이라고 말한다.
+pytest 공식 문서는 테스트를 `특정 행동에 대한 결과`를 보고, `결과가 내가 기대한 것과 동일한지`를 확인하는 것이라고 말한다.
 
 - Behavior은 특정 상황이나 자극에 대해 시스템이 반응하는 방식이다.
 - 테스트를 쓰는 것이 어려운 것은, Behavior가 경험적으로 측정될 수 있는 것이 아니기 때문이다.
@@ -94,8 +93,7 @@ def test_the_unknown():
 
 ### 2. pytest.mark.xfail
 
-[공식 문서](https://docs.pytest.org/en/6.2.x/skipping.html#xfail-mark-test-functions-as-expected-to-fail)에 나온 설명은 다음과 같다. 직역해보면
-test가 fail할 것이라고 가리키는 것이고, 실패하더라도 traceback을 리포팅하지 않고 문제 없이 패스하게 된다. 터미널에서는 XFAIL(expected to fail)과 XPASS(unexpectedly passing) 섹션에서 결과를 리스팅한다.
+공식 문서에 나온 설명은 다음과 같다. 직역해보면 test가 fail할 것이라고 가리키는 것이고, 실패하더라도 traceback을 리포팅하지 않고 문제 없이 패스하게 된다. 터미널에서는 XFAIL(expected to fail)과 XPASS(unexpectedly passing) 섹션에서 결과를 리스팅한다.
 
 >You can use the xfail marker to indicate that you expect a test to fail.
 >This test will run but no traceback will be reported when it fails.

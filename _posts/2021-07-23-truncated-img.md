@@ -51,7 +51,6 @@ while True:
 
 이미지 형식에 대해서 잘 모르고, 라이브러리도 익숙하지 않은 상태여서 사실 처음에는 truncated의 뜻도 몰랐다. 간단히 정의해보면
 - 구글링을 해보면 '잘린'이라는 뜻으로 나온다.
-- stack overflow를 보면 [이미지 프로세싱에서 truncated의 의미](https://stackoverflow.com/questions/59617636/the-meaning-of-truncation-in-image-processing) 가 무엇인지 이미 물어본 글도 있다.
 - 정리해보면 `이미지의 가장자리 부분이 잘린 것`이다.
 
 
@@ -77,7 +76,7 @@ finally:
 ## 2. try-except
 
 이미지를 로드에 성공했다. 그런데 해당 이미지가 잘린 이미지라는 것을 확인하려면 어떻게 해야 할까? 로드를 하려면 이미지를 읽을 수 없는 부분을 무시하고 지나가는 것인데, 잘렸다는 것을 어떻게 확인할 수 있을까?
-처음에 [Pillow github issue에 올라온 글](https://github.com/python-pillow/Pillow/issues/3012) 을 봤는데, Pillow를 통해 확인할 수 있는 방법은 try-except 뿐이었다.
+처음에 Pillow github issue에 올라온 글을 봤는데, Pillow를 통해 확인할 수 있는 방법은 try-except 뿐이었다.
 
 일단 에러를 내고, except에서 OSError를 캐치해서 처리하는 것이었다. truncated image는 `open 시에는 에러가 발생하지 않기 때문에`, 에러가 생길 수 있는 부분부터 try-except에 넣어준다.
 
@@ -100,7 +99,7 @@ except OSError as e:
 
 JPG, JPEG, PNG 파일의 경우 파일의 구조가 정해져있고, 이미지 파일의 끝과 시작을 나타내는 바이트 값이 고정되어 있다.
 이 고정된 값의 이름을 JPEG, JPG는 EOI (End Of Image), PNG는 IEND라고 한다.
-그런데 truncated file의 경우 이 값이 고정된 값과 다르게 나타나게 된다. 이 [링크](https://www.programmersought.com/article/44876269499/) 에 자세히 설명되어 있고, 잘린 이미지의 예시도 볼 수 있다.
+그런데 truncated file의 경우 이 값이 고정된 값과 다르게 나타나게 된다.
 
 사실 이 부분은 stack overflow에 질문해서 알게된 것이라서, 답변자의 글을 가져왔다.
 답변자는 이미지를 만들어 정상 이미지의 바이트를 확인할 수 있는 코드를 알려주었다.

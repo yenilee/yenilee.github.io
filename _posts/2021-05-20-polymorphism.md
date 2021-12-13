@@ -4,7 +4,7 @@ tags: java 객체지향
 ---
 
 <br/>
-[객체지향 강의](http://www.kocw.net/home/cview.do?cid=42e5d809846bebec) 정리✍🏻 11강 다형성 <br/>
+객체지향 강의 정리✍🏻 11강 다형성 <br/>
 <!--more-->
 
 

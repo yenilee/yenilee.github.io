@@ -11,7 +11,6 @@ truncated image를 찾는 과정에서 알게된 Trailer group- 이미지 형식
 ---
 
 이미지는 확장자에 따라 내부적으로 규칙성을 가지고 있다. 깨진 이미지는 이러한 구성을 갖추지 못한 이미지를 말한다.
-(깨진 이미지를 처리하는 방법은 [링크](https://yenilee.github.io/2021/07/23/truncated-img.html)에서 확인할 수 있다.)
 
 JPEG의 경우 EOI 마커는 이미지의 끝을 말하고, 마지막 마커가 규칙과 다를 경우 깨진 이미지로 규정하는 방식으로 코드를 짰었다.
 
@@ -42,16 +41,15 @@ JPG 파일은 본래 JIF(JPEG Interchange Format) 형태로 저장되었으나, 
     - IEND: 맨 뒤에 위치
 
 ## 3) 이미지의 hex값을 확인하는 방법
-[Ultraedit](https://www.ultraedit.com/)이라는 툴을 통해서 이미지의 hex값을 확인할 수 있다. 아래 이미지가 예시인데, 맨 처음 값에서 SOI를 확인할 수 있다.
+Ultraedit이라는 툴을 통해서 이미지의 hex값을 확인할 수 있다. 아래 이미지가 예시인데, 맨 처음 값에서 SOI를 확인할 수 있다.
 그 뒤에 나오는 FF E1을 통해 이미지가 exif format이라는 것을 알 수 있고, 오른쪽에 samsung이라고 쓰여져 있는 것을 보아 삼성 카메라로 촬영된 이미지인 것 같다.
 
 ![ultraedit](/assets/images/ultraedit.png)
 
-
 # Trailer group
 ## 1) 발견
 이미지 파일의 마지막 바이트를 hex값으로 변환해 ffd9인지 확인해서 truncated 여부를 체크하고 있었다.
-그런데 깨지지 않은 이미지에서도 마지막 값이 EOI가 아닌 경우가 있었고, 확인해보니 디지털 카메라 중 JPEG는 EOI 뒤에 trailer라고 해서 여러 데이터를 담는 경우가 있다고 한다.  [참고](https://exiftool.org/forum/index.php?topic=4374.0)
+그런데 깨지지 않은 이미지에서도 마지막 값이 EOI가 아닌 경우가 있었고, 확인해보니 디지털 카메라 중 JPEG는 EOI 뒤에 trailer라고 해서 여러 데이터를 담는 경우가 있다고 한다.
 
 그래서 뒤에서부터 1000바이트정도를 읽어, EOI가 있는지 여부를 체크하는 로직을 추가했다.
 
@@ -59,7 +57,7 @@ JPG 파일은 본래 JIF(JPEG Interchange Format) 형태로 저장되었으나, 
 ![trailer](/assets/images/trailer.png)
 
 오른쪽을 보면 UTC_Data(시간 정보로 추정)라든지, MCC_Data가 있는 것을 알 수 있다.
-[JPEG Tags](https://exiftool.org/TagNames/JPEG.html)에서 정리한 태그들을 보면 표 맨 마지막에 Trailer Tag가 나온다.
+exiftool.org에서 찾아봤을 때 정리한 태그들을 보면 표 맨 마지막에 Trailer Tag가 나온다.
 여기서 삼성 trailer tags에 들어가면 TimeStamp나 MCCData가 있어 내가 비교한 이미지의 Trailer와 일치한다. (mcc가 무엇인지 알고싶었는데 검색을 해도 잘 안 나온다)
 
 ---

@@ -28,7 +28,7 @@ tags: algorithm
 
 
 ![image](https://miro.medium.com/max/2400/1*j8fUQjaUlmrQEN_udU0_TQ.jpeg)
-- [(이미지 출처)](https://towardsdatascience.com/big-o-d13a8b1068c8)
+
 
 # 기본 정렬
 정렬은 데이터가 주어졌을 때 정해진 순서로 이를 나열하는 것이다. 정렬에는 여러 알고리즘이 있는데, 먼저 가장 쉽지만 성능은 낮을 수 있는 기본 정렬부터 알아보자.

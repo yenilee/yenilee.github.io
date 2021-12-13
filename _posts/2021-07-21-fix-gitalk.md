@@ -15,7 +15,7 @@ tags: jekyll gitalk bug
 
 처음에는 내가 만든 github application의 client secret이 문제인 줄 알고 다시 생성하면서 인증을 해봤다.
 그런데 내가 쓰고 있는 테마의 홈페이지도 댓글이 동일하게 로그인이 안 되고 있었다.
-인증 문제가 아니라 [gitalk의 버그](https://github.com/gitalk/gitalk/issues/433) 였고, 생각보다 아주 간단하게 해결되었다.
+인증 문제가 아니라 gitalk의 버그였고, 생각보다 아주 간단하게 해결되었다.
 
 # 해결 방법
 
@@ -56,10 +56,10 @@ sources:
 ```python
 https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token
 ```
-[관련 블로그를 번역해보면](https://www.chenhanpeng.com/create-own-cors-anywhere-to-resolve-the-request-with-403/) cors-anywhere는 도메인 간 문제를 해결하기 위해 설계된 리버스 프록시이며 오픈 소스 프레임워크인데,
-gitalk에서 cors-anywhere.herokuapp.com 서버를 써오다가 2021.1.31부터 [해당 서버가 개방형 프록시 역할을 하지 않으면서](https://github.com/Rob--W/cors-anywhere/issues/301)  인증 문제가 발생한 것으로 보인다.
+cors-anywhere는 도메인 간 문제를 해결하기 위해 설계된 리버스 프록시이며 오픈 소스 프레임워크인데,
+gitalk에서 cors-anywhere.herokuapp.com 서버를 써오다가 2021.1.31부터 해당 서버가 개방형 프록시 역할을 하지 않으면서 인증 문제가 발생한 것으로 보인다.
 
-예전에 다른 블로그에 작성했었던 [CORS 게시물](https://velog.io/@matisse/TIL-CORS) 참고해보면, CORS는 클라이언트와 서버가 요청 응답을 주고받을을 때 리소스 접근이 허용된 출처인지 확인하기 위한 구조다.
+CORS는 클라이언트와 서버가 요청 응답을 주고받을을 때 리소스 접근이 허용된 출처인지 확인하기 위한 구조다.
 origin이 다른 내 블로그와 github간의 resource를 주고받기 위해서는 리버스 프록시가 필요하다. 그래서 gitalk은  proxy를 아래와 같이 변경했다.
 
 ```python

@@ -22,7 +22,7 @@ tags: jekyll gitalk
 ```
 
 ## 1. github Oauth application
-config를 설정하기 전에 github에서 application을 생성해주어야 한다. [링크](https://github.com/settings/applications/new) 에서 아래와 같이 입력해주면 된다.
+config를 설정하기 전에 github에서 application을 생성해주어야 한다. 아래와 같이 입력해주면 된다.
 
 - Application name: 원하는 이름을 입력 ex. gitalk
 - Homepage URL: 깃헙 블로그 주소 ex. https://yenilee.github.io
