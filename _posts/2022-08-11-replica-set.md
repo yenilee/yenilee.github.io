@@ -3,6 +3,10 @@ title: MongoDB의 구성, Replica Set
 tags: mongodb
 ---
 
+<br/>
+primary와 secondary, 그리고 읽기 설정<br/>
+<!--more-->
+
 # Replica Set
 레플리카셋은 mongod 프로세스들의 그룹이고, 여분의 데이터와 고가용성을 제공한다. primary가 사용 불가해졌을 때 여분의 데이터를 위해 멤버는 3 이상을 권장한다.
 레플리카셋은 50개까지 늘릴 수 있고, 그 중 투표는 7개만 참여 가능하다. 둘만 남았을 때 투표가 불가하기 때문에, arbiter(투표만 하고 데이터를 저장하지 않음)를 사용할 수 있다.
