@@ -1,5 +1,5 @@
 ---
-title: MongoDB의 구성, Replica Set
+title: MongoDB 레플리카셋
 tags: mongodb
 ---
 
