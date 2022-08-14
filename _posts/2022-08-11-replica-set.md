@@ -9,7 +9,7 @@ mongodb의 구조 💡 <br/>
 
 # Sharding
 샤딩은 여러개의 머신에서 데이터를 분산시키기 위한 방법이다. mongodb는 대량의 데이터셋에서의 배포와 운영을 지원하기 위해 샤딩을 사용한다.
-데이터셋의 크기가 너무 크면 하나의 서버로는 무리가 될 수 있다. 높은 쿼리율은 서버의 CPU 가용성을 떨어트릴 수 있고, 시스템의 RAM 보다 사이즈가 더 큰 워킹 셋은 디스크의 I/O 가용성에 무리를 줄 수 있기 때문이다.
+데이터셋의 크기가 너무 크면 하나의 서버로는 무리가 될 수 있다. 높은 쿼리율은 서버의 CPU 가용성을 떨어트릴 수 있고, 시스템의 RAM 보다 사이즈가 더 큰 working set(주어진 시간 간격에서 프로세스에 필요한 메모리 양)은 디스크의 I/O 가용성에 무리를 줄 수 있기 때문이다.
 이를 극복하기 위해 vertical, horizontal 스케일링 두 가지 방법을 사용할 수 있다.
 
 ## vertical
@@ -25,14 +25,14 @@ Shareded 클러스터는 아래 세 가지로 구성된다.
 
 - shard
   - 각 샤드는 데이터의 일부만(subset) 가지고 있다. 샤드는 레플리카셋으로서 배포되어야 한다.
-![img_1.png](../assets/images/shard.png)
+![img_1.png](/assets/images/shard.png)
 - mongos
   - 쿼리 라우터로서 동작한다. 클라이언트 애플리케이션과 shareded cluster 사이에 존재하는 인터페이스를 제공한다. (unsharded cluster 포함)
   - sharded cluster에서 콜렉션에 적븐하기 위해서는 반드시 mongos router와 연결되어야 한다.
 - config servers
   - 클러스터를 위한 설정과 메타데이터를 저장한다. 레플리카셋으로서 배포되어야 한다.
 
-![img.png](../assets/images/shared_cluster.png)
+![img.png](/assets/images/shared_cluster.png)
 
 # Replica Set
 복제(replication)와 장애 극복 기능 (failover)을 가진 mongodb 서버들의 클러스터.
@@ -47,7 +47,7 @@ Shareded 클러스터는 아래 세 가지로 구성된다.
 
 둘만 남았을 때 투표가 불가하기 때문에, arbiter(투표만 하고 데이터를 저장하지 않음)를 사용할 수 있다. 레플리카셋은 50개까지 늘릴 수 있고, 그 중 투표는 7개만 참여 가능하다.
 
-![img_1.png](../assets/images/img_1.png)
+![img_1.png](/assets/images/img_1.png)
 
 ## Read Concern
 일관성과 고립성 (트랜잭션의 요소 중 ACID 중 C, I)을 유지시켜준다.
