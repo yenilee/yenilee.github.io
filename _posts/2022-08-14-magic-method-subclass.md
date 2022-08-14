@@ -1,6 +1,6 @@
 ---
-title: MongoDB 클러스터, 레플리카셋
-tags: mongodb
+title: 매직 메서드 `__init_subclass__` 의 동작
+tags: python
 ---
 
 <br/>
@@ -25,14 +25,14 @@ Shareded 클러스터는 아래 세 가지로 구성된다.
 
 - shard
   - 각 샤드는 데이터의 일부만(subset) 가지고 있다. 샤드는 레플리카셋으로서 배포되어야 한다.
-![shard.png](/assets/images/shard.png)
+![img_1.png](/assets/images/shard.png)
 - mongos
   - 쿼리 라우터로서 동작한다. 클라이언트 애플리케이션과 shareded cluster 사이에 존재하는 인터페이스를 제공한다. (unsharded cluster 포함)
   - sharded cluster에서 콜렉션에 적븐하기 위해서는 반드시 mongos router와 연결되어야 한다.
 - config servers
   - 클러스터를 위한 설정과 메타데이터를 저장한다. 레플리카셋으로서 배포되어야 한다.
 
-![shared_cluster.png](/assets/images/shared_cluster.png)
+![img.png](/assets/images/shared_cluster.png)
 
 # Replica Set
 복제(replication)와 장애 극복 기능 (failover)을 가진 mongodb 서버들의 클러스터.
