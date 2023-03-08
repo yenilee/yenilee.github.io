@@ -4,7 +4,7 @@ tags: network
 ---
 
 <br/>
-그림으로 배우는 httl network를 보고 정리한 HTTP 프로토콜 기본, TCP/IP 4계층 <br/>
+그림으로 배우는 http network 책을 보고 정리한 HTTP 프로토콜 기본, TCP/IP 4계층 <br/>
 <!--more-->
 
 # 1. 기본 개념
