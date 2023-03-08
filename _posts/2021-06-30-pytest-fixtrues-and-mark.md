@@ -1,5 +1,5 @@
 ---
-title: Pytest | 테스트 코드 작성 기본
+title: Pytest 테스트 코드 기본
 tags: python
 ---
 

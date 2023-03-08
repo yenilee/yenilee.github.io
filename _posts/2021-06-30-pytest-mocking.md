@@ -1,5 +1,5 @@
 ---
-title: Pytest | mocking 방법 🕶
+title: Pytest mocking
 tags: python
 ---
 

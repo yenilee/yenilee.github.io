@@ -1,5 +1,5 @@
 ---
-title: 프록시, 게이트웨이, 터널 + 캐시
+title: 프록시, 게이트웨이
 tags: network
 ---
 
