@@ -24,6 +24,7 @@ tags: 인증/권한 oauth
   - Oauth 등을 통해 사용자의 권한 확인
 
 # IDP (IDentify Provider)
+![idp.png](/assets/images/idp.png)
 - 여권을 통해 내 신원을 확인해 여러 나라를 여행다닐 수 있는 것처럼, IDP를 통해 인터넷에서 내 신원을 확인
 - SAML, Oauth 2.0, OIDC 같은 표준을 기반으로 사용자를 인증하거나, 특정 리소스에 대한 접근 권한을 준다.
 
