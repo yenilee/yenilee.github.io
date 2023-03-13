@@ -1,6 +1,6 @@
 ---
-title: google oauth 2.0 access token 과 id token의 차이점
-tags: 인증
+title: Access token 과 ID token의 차이점
+tags: 인증/권한 oauth
 ---
 
 <br/>
