@@ -10,6 +10,9 @@ tags: 인증/권한 oauth
 ---
 
 3줄 요약
+- 인증은 로그인 등 자격 증명으로 사용자를 식별하는 것
+- 권한은 특정 리소스에 대해 접근 권한을 갖고 있는지 확인하는 것
+- Access token은 권한, ID token은 인증
 
 # 인증과 권한
 - 인증 (Authentification)
