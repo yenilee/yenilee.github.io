@@ -33,6 +33,7 @@ Long Term Support는 일반적 수준보다 더 오래 지원되는 버전을 �
 
 ## node release phases
 패키지를 다운로드만 받아봤지 패키지의 수명에 대해서는 깊이 생각해본적이 없는데, 배포 스케줄이 생각보다 더 자세하구나 새삼 알게 됐다.
+릴리즈 페이지를 살펴보면 상태를 따로 정의해놓고, 버전 별로 상태를 정확하게 명시해놓았다.
 
 - Current :
   - 노드 메인 브랜치에 들어갈 non-majer (non-breaking) 변화의 대부분을 포함해야 함
@@ -52,7 +53,7 @@ sudo n stable
 n을 치면 아래와 같이 선택할 수 있는 노드 버전이 나오게 된다.
 특정 버전을 선택하면 업데이트가 될줄 알았는데, Permission Denided가 엄청 뜨면서 active한 버전은 여전이 18.15.0 이었다.
 
-![n.png](/assets/images/n.png)
+![n](/assets/images/n.png)
 
 # 해결
 생각해보니 node를 brew로 깔았던 것 같아서 node를 통해 업데이트를 해주었다
