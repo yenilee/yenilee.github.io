@@ -1,5 +1,5 @@
 ---
-title: github actions 최적화 (1) - build cache 활용
+title: github actions 최적화 (1) - image build
 tags: CI docker github_actions
 ---
 
