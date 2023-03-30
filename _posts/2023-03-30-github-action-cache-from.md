@@ -1,10 +1,10 @@
 ---
-title: github action 최적화 (1) - docker build cache 문제
+title: github actions 최적화 (1) - build cache 활용
 tags: CI docker github_actions
 ---
 
 <br/>
-github action에서 이미지 빌드 시 cache from option 이 먹지 않아 탐구한 내용들 <br/>
+github action에서 이미지 빌드 시 --cache-from option 이 먹지 않아 탐구한 내용들 <br/>
 <!--more-->
 
 ---
