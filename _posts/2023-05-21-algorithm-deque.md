@@ -50,8 +50,9 @@ tags: algorithm python
     queue.get() # 1 (앞에서부터 제거)
     queue.get() # 2
      ```
+
 # 문제 예시
-[링크](https://school.programmers.co.kr/learn/courses/30/lessons/12909)의 올바른 괄호 문제. 괄호가 정해진 순서대로 나열되어 있어야 True를 환함
+프로그래머스 올바른 괄호 문제. [링크](https://school.programmers.co.kr/learn/courses/30/lessons/12909) 괄호가 정해진 순서대로 나열되어 있어야 True를 반환함
 - ")" 으로 시작하면 처음부터 열리지가 않았기 때문에 바로 False를 리턴함
 - "("으로 시작할 경우 queue에 값을 넣어줌
 - 첫 번쨰 값이 "("이고 들어오는 괄호가 ")"일 경우 queue에서 제거 (짝지어져 있기 때문에)
