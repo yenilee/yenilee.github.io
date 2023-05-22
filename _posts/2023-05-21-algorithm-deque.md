@@ -10,9 +10,8 @@ tags: algorithm python
 ---
 
 # 정의
-- queue는 선입 선출 (First In First Out) 양방향 <-> stack은 후입 선출(Last In First Out) 단방향,
-- 양방향으로 데이터를 넣고 빼도록 구현이 가능하다.
-- 구현 사례는 비동기 메시징(dramatiq 등), 알고리즘의 경우 너비 우선 탐색 등에서 활용됨
+- queue는 선입 선출(First In First Out)이며 양방향으로 데이터 추가 제거가 가능하다. (stack은 후입 선출 Last In First Out, 단방향)
+- 구현 사례는 비동기 메시징(dramatiq 등), 알고리즘의 경우 너비 우선 탐색 등에서 활용된다.
 
 # 구현 방법
 1. list 구현
@@ -28,7 +27,7 @@ tags: algorithm python
 
 2. deque 구현
    - Double-Ended queue 의 약자
-   - list 첫 번째 값을 추가, 제거 시 O(1)으로 성능상의 이점 가짐
+   - list 첫 번째 값을 추가, 제거 시 O(1)으로 성능상의 이점 가지며, thread safe하다.
    - 무작위 접근은 마찬가지로 O(n)
      - 내부적으로 linked list를 사용하기 때문에, 특정 인덱스 값에 도달하려면 길이만큼 순회를 해야 함.
     ```python
@@ -50,6 +49,14 @@ tags: algorithm python
     queue.get() # 1 (앞에서부터 제거)
     queue.get() # 2
      ```
+# 공식 문서
+위 설명에서 언급된 시간 복잡도는 [링크]()의 공식 문서에서 확인이 가능하다.
+
+> Deques are a generalization of stacks and queues (the name is pronounced “deck” and is short for “double-ended queue”).
+>
+> Deques support thread-safe, memory efficient appends and pops from either side of the deque with approximately the same O(1) performance in either direction.
+>
+> Though list objects support similar operations, they are optimized for fast fixed-length operations and incur O(n) memory movement costs for pop(0) and insert(0, v) operations which change both the size and position of the underlying data representation.
 
 # 문제 예시
 프로그래머스 올바른 괄호 문제. [링크](https://school.programmers.co.kr/learn/courses/30/lessons/12909) 괄호가 정해진 순서대로 나열되어 있어야 True를 반환함
