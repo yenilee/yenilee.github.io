@@ -1,5 +1,5 @@
 ---
-title: MongoDB를 효율적을 사용하는 법 (1) index
+title: MongoDB를 효율적을 사용하는 방법 (1) index
 tags: mongodb index
 ---
 
@@ -8,14 +8,21 @@ tags: mongodb index
 <!--more-->
 
 ---
+회사에서 트레이닝을 받게 되어서 인덱스, 디자인 패턴 관련한 세션을 듣게 됐다.
+2년 전 "Real MongoDB-대용량 데이터 처리를 위한" 이라는 책을 읽으며 정리했던 내용들을 다시 상기시키고,
+실용적인 조언과 insight를 얻을 수 있느 좋은 기회였다.
+
+책을 읽으며 정리한 블로그는 아래 링크에서 확인할 수 있다.
+- [DB 인덱스란?](https://yenilee.github.io/2021/09/16/what-is-db-in-dex.html)
+- [B-tree 인덱스](https://yenilee.github.io/2021/09/16/b-tree.html)
+
 
 # Index in MongoDB
 - mongoDB 인덱스는 일반적으로 B-tree 인덱스를 사용한다.
 - 인덱스 레코드는 field(인덱스 키값) + 주소 값(물리적인 위치를 가리키는 포인터)의 조합으로 이루어져 있다.
 - 데이터 레코드는 기본적으로 insert 순이며 정렬되어 있지 않은 반면, 인덱스의 키값은 모두 정렬되어 있다.
-- 데이터가 커질수록 인덱스도 커진다.
 
-# 장단점
+# 인덱스의 장단점
 ## 장점
 - 쿼리와 업데이트 속도를 향상시킨다.
 - 필요한 range만 스캔함으로써 disk I/O를 감소시켜준다.
@@ -28,11 +35,11 @@ tags: mongodb index
 - 인덱스 추가는 모든 write에 10%의 오버 헤드를 발생시킨다.
     - insert, delete : 대부분의 인덱스에 영향
     - update: 업데이트될 field를 가진 인덱스만 영향
-- 인덱스가 많으면 메모리가 부족해질 수 있다
+-  데이터가 커질수록 인덱스도 커지며, 인덱스가 많으면 메모리가 부족해질 수 있다
 
 # 수행
 - 기본적으로 쿼리를 하면 쿼리 옵티마이저가 분석 → Plan을 만듦 → Plan을 기반으로 데이터를 가져온다.
-- PlanCache: 조회할 때마다 분석하면 비효율적이기 때문에  plan을 통해 최적의 인덱스를 찾아 캐시해놓음
+- PlanCache: 조회할 때마다 분석을 하면 비효율적이기 때문에  plan을 통해 최적의 인덱스를 찾아 캐시해놓음
     - index 중 candidate index를 추림 → 1000-5000개 데이터 샘플링 → candidate index를 다 수행해봄 → 가장 score가 좋은 candidate를 캐시에 저장
 - 데이터가 증가하면서 분포도가 변하면 해당 plan이 효율적이지 않을 수 있기 때문에, eviction 되기도 한다
   - 특히 쿼리 옵티마이저의 통계 정보 변경 시 (데이터 변경, 인덱스 추가 및 삭제 등)
@@ -105,7 +112,6 @@ executionStats : {
 # 종류
 
 많은 종류의 인덱스가 있으나, 많이 사용되는 인덱스 하나에 대해서만 정리함
-
 ## compound indexes
 
 - 하나 이상의 field로 인덱스 구성. 가장 많이 사용되며 RDBMS 인덱스와 컨셉 비슷
@@ -119,9 +125,10 @@ executionStats : {
     - Then Sort → Range
         - 인덱스 없을 때 sort가 range 보다 훨씬 더 비싸기 때문
 - 예시
-  - name, rating, timestamp 순으로 인덱스가 추가되어 있고, 아래 쿼리로 조회한다면 name, range 스캔된 결과가 이미 sorting 되어있기 때문에 훨씬 나음
-  - Query: {timestamp: {$gte: 2, $lte:3}, username: "anonymous"}`
-
+  - name, rating, timestamp 순으로 인덱스가 추가되어 있고, 아래 쿼리로 조회한다면 name, range 스캔된 결과가 이미 sorting 되어있기 때문에 정렬 비용이 들지 않는다.
+    - Query: `{timestamp: {$gte: 2, $lte:3}, username: "anonymous"}`
+    - Sort: `{rating : 1}`
+    - Index: `{username: 1, rating: 1, timestamp: 1}`
 ![shard.png](/assets/images/index-record.jpeg)
 
 
