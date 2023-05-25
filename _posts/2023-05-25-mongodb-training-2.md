@@ -4,7 +4,7 @@ tags: mongodb index
 ---
 
 <br/>
-mongodb training session에서 배운 내용을 요약 정리 🤓 <br/>
+index 주제 글에 이어서 써보는 모델링 & 디자인 패턴에 대한 글 <br/>
 <!--more-->
 
 ---
@@ -29,7 +29,7 @@ mongodb training session에서 배운 내용을 요약 정리 🤓 <br/>
 - mongodb에서는 array를 잘 쓰는게 매우 중요
 - whole array를 업데이트하면 성능상 문제가 생기므로 operator를 활용해서 업데이트할 것
   - $elematch, $all, $size, $push, $pop, $pull, $pullALl, $each
-- arrayr는 document 사이즈를 초과하지 않도록 bounded(제한) 되어야 한다.
+- array는 document 사이즈를 초과하지 않도록 bounded(제한) 되어야 한다.
   - 끝 없이 저장되는 데이터를 list로 추가할 경우 document size limit 초과하게될 수 있음
 
 # Embedding vs Linking
