@@ -1,10 +1,10 @@
 ---
-title: MongoDB를 효율적을 사용하는 방법 (2) 디자인 패턴
+title: MongoDB 잘! 써보기 (2) 디자인 패턴
 tags: mongodb index
 ---
 
 <br/>
-가장 많이 사용되는 디자인 패턴을 요약 정리 <br/>
+mongodb training session에서 배운 내용을 요약 정리 🤓 <br/>
 <!--more-->
 
 ---

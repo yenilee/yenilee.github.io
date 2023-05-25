@@ -1,10 +1,10 @@
 ---
-title: MongoDB를 효율적을 사용하는 방법 (1) index
-tags: mongodb index
+title: MongoDB 잘! 써보기 (1) index
+tags: mongodb 디자인패턴
 ---
 
 <br/>
-인덱스에 대한 기본적인 부분을 요약 정리 <br/>
+mongodb training session에서 배운 내용을 요약 정리 🤓 <br/>
 <!--more-->
 
 ---
